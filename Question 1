@@ -1,0 +1,29 @@
+public class Main {
+    public static void printDominantElements(int array[]) {
+        int n = array.length;
+        int dominantElements[] = new int[n];
+        int dominantElementsLength = 0;
+        int maximumToRight = array[n - 1];
+        for (int i = n - 1; i >= 0; i--) {
+            if (i == n - 1) {
+                dominantElements[n - 1 - dominantElementsLength] = array[i];
+                dominantElementsLength++;
+            }
+            else {
+                if (array[i] > maximumToRight) {
+                    dominantElements[n - 1 - dominantElementsLength] = array[i];
+                    dominantElementsLength++;
+                    maximumToRight = array[i];
+                }
+            }
+        }
+        for (int i = n - dominantElementsLength; i < n; i++) {
+            System.out.print(dominantElements[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        printDominantElements(new int[] {16, 17, 4, 3, 5, 2});
+    }
+}
